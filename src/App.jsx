@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
 
-export const IP = 'http://200.126.205.49:4000';
+export const IP = 'https://damijuli.ddns.net';
 
 const App = () => {
   return (

@@ -68,7 +68,7 @@ const HomePage = () => {
 
   const fetchReminders = async () => {
     try {
-      const response = await fetch(`${IP}/reminder`);
+      const response = await fetch(`${IP}/reminders`);
       const data = await response.json();
       setReminders(data);
     } catch (error) {
