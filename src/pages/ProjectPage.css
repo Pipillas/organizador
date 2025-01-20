@@ -7,9 +7,7 @@
   -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
   border: 1px solid var(--border);
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
 .project-page h1 {
@@ -41,12 +39,30 @@
   padding: 1rem 1.25rem;
   border-radius: 0 8px 8px 0;
   transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .notes-list li:hover,
 .reminders-list li:hover {
   background-color: var(--card-hover);
   transform: translateX(4px);
+}
+
+.delete-item-button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.delete-item-button:hover {
+  color: var(--danger);
 }
 
 .add-form {
@@ -174,7 +190,6 @@
   }
 }
 
-
 /* Back and Delete Buttons */
 .back-button,
 .delete-button {
@@ -207,7 +222,6 @@
 
 .delete-button:hover {
   background-color: #dc2626;
-  /* Slightly darker red */
   transform: translateY(-2px);
 }
 

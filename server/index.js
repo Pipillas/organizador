@@ -76,6 +76,40 @@ app.post('/projects/:id/reminders', async (req, res) => {
   }
 });
 
+// Eliminar una nota específica de un proyecto
+app.delete('/projects/:id/notes/:noteIndex', async (req, res) => {
+  const { id, noteIndex } = req.params;
+  const project = await Project.findById(id);
+  if (project) {
+    if (noteIndex >= 0 && noteIndex < project.notes.length) {
+      project.notes.splice(noteIndex, 1);
+      await project.save();
+      res.status(200).json(project);
+    } else {
+      res.status(400).json({ error: 'Índice de nota inválido' });
+    }
+  } else {
+    res.status(404).json({ error: 'Proyecto no encontrado' });
+  }
+});
+
+// Eliminar un recordatorio específico de un proyecto
+app.delete('/projects/:id/reminders/:reminderIndex', async (req, res) => {
+  const { id, reminderIndex } = req.params;
+  const project = await Project.findById(id);
+  if (project) {
+    if (reminderIndex >= 0 && reminderIndex < project.reminders.length) {
+      project.reminders.splice(reminderIndex, 1);
+      await project.save();
+      res.status(200).json(project);
+    } else {
+      res.status(400).json({ error: 'Índice de recordatorio inválido' });
+    }
+  } else {
+    res.status(404).json({ error: 'Proyecto no encontrado' });
+  }
+});
+
 app.get('/reminders', async (req, res) => {
   const projects = await Project.find();
   const reminders = projects.flatMap(project =>

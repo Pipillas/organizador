@@ -71,6 +71,32 @@ const ProjectPage = () => {
     }
   };
 
+  const handleDeleteNote = async (index) => {
+    if (window.confirm('¿Estás seguro que deseas borrar esta nota?')) {
+      try {
+        await fetch(`${IP}/projects/${id}/notes/${index}`, {
+          method: 'DELETE',
+        });
+        await fetchProject();
+      } catch (error) {
+        console.error('Error deleting note:', error);
+      }
+    }
+  };
+
+  const handleDeleteReminder = async (index, task) => {
+    if (window.confirm(`¿Estás seguro que deseas borrar el recordatorio "${task}"?`)) {
+      try {
+        await fetch(`${IP}/projects/${id}/reminders/${index}`, {
+          method: 'DELETE',
+        });
+        await fetchProject();
+      } catch (error) {
+        console.error('Error deleting reminder:', error);
+      }
+    }
+  };
+
   const handleDeleteProject = async () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar este proyecto?')) {
       try {
@@ -87,7 +113,6 @@ const ProjectPage = () => {
       }
     }
   };
-
 
   useEffect(() => {
     fetchProject();
@@ -132,7 +157,15 @@ const ProjectPage = () => {
         ) : (
           <ul className="notes-list">
             {project.notes.map((note, index) => (
-              <li key={index}>{note}</li>
+              <li key={index}>
+                {note}
+                <button
+                  className="delete-item-button"
+                  onClick={() => handleDeleteNote(index)}
+                >
+                  <Trash2 size={16} />
+                </button>
+              </li>
             ))}
           </ul>
         )}
@@ -184,6 +217,12 @@ const ProjectPage = () => {
                     })}
                   </span>
                 </div>
+                <button
+                  className="delete-item-button"
+                  onClick={() => handleDeleteReminder(index, reminder.task)}
+                >
+                  <Trash2 size={16} />
+                </button>
               </li>
             ))}
           </ul>
