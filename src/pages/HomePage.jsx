@@ -58,7 +58,8 @@ const HomePage = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch(`${IP}/projects`);
+      const response = await fetch(`${IP}/api/projects`); // 🔄 Agregar `/api/`
+      if (!response.ok) throw new Error('Error en la respuesta del servidor');
       const data = await response.json();
       setProjects(data);
     } catch (error) {
@@ -66,9 +67,11 @@ const HomePage = () => {
     }
   };
 
+
   const fetchReminders = async () => {
     try {
-      const response = await fetch(`${IP}/reminders`);
+      const response = await fetch(`${IP}/api/reminders`); // 🔄 Agregar `/api/`
+      if (!response.ok) throw new Error('Error en la respuesta del servidor');
       const data = await response.json();
       setReminders(data);
     } catch (error) {
@@ -78,11 +81,12 @@ const HomePage = () => {
     }
   };
 
+
   const handleAddProject = async (projectName) => {
     if (projectName.trim()) {
       setIsSubmitting(true);
       try {
-        await fetch(`${IP}/projects`, {
+        await fetch(`${IP}/api/projects`, { // 🔄 Agregar `/api/`
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name: projectName }),
@@ -96,6 +100,7 @@ const HomePage = () => {
       }
     }
   };
+
 
   useEffect(() => {
     fetchProjects();

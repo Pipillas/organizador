@@ -38,9 +38,8 @@ body {
 
 /* Header */
 .header {
-  background-color: rgba(30, 41, 59, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: var(--card-bg);
+  /* Usa un color sólido en lugar de rgba */
   padding: 2rem;
   border-radius: 16px;
   border: 1px solid var(--border);
@@ -60,9 +59,8 @@ h1 {
 
 /* Sections */
 section {
-  background-color: rgba(30, 41, 59, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: var(--card-bg);
+  /* Usa un color sólido en lugar de rgba */
   padding: 2rem;
   border-radius: 16px;
   border: 1px solid var(--border);
@@ -187,9 +185,8 @@ footer {
   text-align: center;
   margin-top: 3rem;
   padding: 2rem;
-  background-color: rgba(30, 41, 59, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: var(--card-bg);
+  /* Usa un color sólido en lugar de rgba */
   color: var(--text-muted);
   border-radius: 16px;
   border: 1px solid var(--border);

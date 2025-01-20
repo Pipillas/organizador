@@ -18,7 +18,7 @@ const ProjectPage = () => {
 
   const fetchProject = async () => {
     try {
-      const response = await fetch(`${IP}/projects/${id}`);
+      const response = await fetch(`${IP}/api/projects/${id}`);
       if (!response.ok) {
         throw new Error('Proyecto no encontrado');
       }
@@ -36,7 +36,7 @@ const ProjectPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await fetch(`${IP}/projects/${id}/reminders`, {
+      await fetch(`${IP}/api/projects/${id}/reminders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ task, date }),
@@ -56,7 +56,7 @@ const ProjectPage = () => {
     if (note.trim()) {
       setIsSubmitting(true);
       try {
-        await fetch(`${IP}/projects/${id}/notes`, {
+        await fetch(`${IP}/api/projects/${id}/notes`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ note }),
@@ -71,10 +71,13 @@ const ProjectPage = () => {
     }
   };
 
+
+
+
   const handleDeleteNote = async (index) => {
     if (window.confirm('¿Estás seguro que deseas borrar esta nota?')) {
       try {
-        await fetch(`${IP}/projects/${id}/notes/${index}`, {
+        await fetch(`${IP}/api/projects/${id}/notes/${index}`, { // 🔄 Cambio aquí
           method: 'DELETE',
         });
         await fetchProject();
@@ -87,7 +90,7 @@ const ProjectPage = () => {
   const handleDeleteReminder = async (index, task) => {
     if (window.confirm(`¿Estás seguro que deseas borrar el recordatorio "${task}"?`)) {
       try {
-        await fetch(`${IP}/projects/${id}/reminders/${index}`, {
+        await fetch(`${IP}/api/projects/${id}/reminders/${index}`, { // 🔄 Cambio aquí
           method: 'DELETE',
         });
         await fetchProject();
@@ -100,7 +103,7 @@ const ProjectPage = () => {
   const handleDeleteProject = async () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar este proyecto?')) {
       try {
-        const response = await fetch(`${IP}/projects/${id}`, {
+        const response = await fetch(`${IP}/api/projects/${id}`, {
           method: 'DELETE',
         });
         if (!response.ok) {
